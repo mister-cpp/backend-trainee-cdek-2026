@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | CDEK</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo" id="cdek-logo">CDEK</div>
+    <div id="nav-links" class="nav-links">
+        <button id="btn-show-login" class="btn-ghost">Вход</button>
+        <button id="btn-show-register" class="btn-primary">Регистрация</button>
+        <button id="btn-show-dashboard" class="btn-ghost hidden">Мои списки</button>
+        <button id="btn-logout" class="btn-secondary hidden">Выход</button>
+    </div>
+</nav>
+
+<div id="toast-container"></div>
+
+<div id="modal-edit" class="modal hidden">
+    <div class="modal-content panel">
+        <h3>Редактировать подарок</h3>
+        <form id="form-edit-item">
+            <input type="hidden" id="edit-item-id">
+            <input type="text" id="edit-item-title" placeholder="Название подарка" required>
+            <input type="text" id="edit-item-desc" placeholder="Описание">
+            <input type="url" id="edit-item-url" placeholder="Ссылка (URL)">
+            <input type="number" id="edit-item-priority" placeholder="Приоритет (1-10)" min="1" max="10" required>
+            <div class="modal-actions">
+                <button type="button" class="btn-ghost" id="btn-close-modal">Отмена</button>
+                <button type="submit" class="btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<main id="app-container">
+    <section id="view-login" class="view hidden">
+        <div class="form-container panel">
+            <h2>Вход в аккаунт</h2>
+            <form id="form-login">
+                <input type="email" id="login-email" placeholder="Email" required autocomplete="email">
+                <input type="password" id="login-password" placeholder="Пароль" required autocomplete="current-password">
+                <button type="submit" class="btn-primary">Войти</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="view-register" class="view hidden">
+        <div class="form-container panel">
+            <h2>Создать аккаунт</h2>
+            <form id="form-register">
+                <input type="email" id="reg-email" placeholder="Email" required autocomplete="email">
+                <input type="password" id="reg-password" placeholder="Пароль" required autocomplete="new-password">
+                <button type="submit" class="btn-primary">Зарегистрироваться</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="view-dashboard" class="view hidden">
+        <div class="panel mb-2">
+            <h3 class="section-title">Создать новый список</h3>
+            <form id="form-create-wishlist">
+                <div class="input-row">
+                    <input type="text" id="wl-title" placeholder="Название (например: День Рождения)" required>
+                    <input type="text" id="wl-date" placeholder="Дата события" required autocomplete="off">
+                </div>
+                <input type="text" id="wl-desc" placeholder="Краткое описание (необязательно)">
+                <button type="submit" class="btn-primary w-auto">Создать список</button>
+            </form>
+        </div>
+
+        <h2 class="section-title">Ваши списки</h2>
+        <div id="wishlists-container" class="grid-container"></div>
+    </section>
+
+    <section id="view-wishlist" class="view hidden">
+        <button id="btn-back-dashboard" class="btn-secondary w-auto mb-2 icon-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Назад к спискам
+        </button>
+
+        <div class="panel mb-2">
+            <h2 id="current-wl-title" class="wl-title">Название</h2>
+            <p class="wl-subtitle">
+                Публичная ссылка: <a href="#" id="current-wl-link" target="_blank" class="accent-link"></a>
+            </p>
+        </div>
+
+        <div class="panel mb-2">
+            <h3 class="section-title">Добавить подарок</h3>
+            <form id="form-create-item">
+                <div class="input-row">
+                    <input type="text" id="item-title" placeholder="Название подарка" required>
+                    <input type="number" id="item-priority" placeholder="Приоритет (1-10)" value="1" min="1" max="10">
+                </div>
+                <input type="text" id="item-desc" placeholder="Описание или комментарий">
+                <input type="url" id="item-url" placeholder="Ссылка на товар (URL)">
+                <button type="submit" class="btn-primary w-auto">Добавить подарок</button>
+            </form>
+        </div>
+
+        <div id="items-container" class="grid-container"></div>
+    </section>
+
+    <section id="view-public" class="view hidden">
+        <div class="panel mb-2 text-center">
+            <h2 id="pub-wl-title" class="wl-title">Вишлист</h2>
+            <p id="pub-wl-desc" class="wl-subtitle"></p>
+        </div>
+        <div id="pub-items-container" class="grid-container"></div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
