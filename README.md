@@ -1,14 +1,13 @@
 # Wishlist API
 
 REST API сервис для создания вишлистов к праздникам.
+Полное задание находится в файле `Go.md`
 
 ## Стек
 - Go 1.25
 - PostgreSQL
 - Docker Compose
 - Роутер `chi`
-
-## Полное задание в файле `Go.md`
 
 ## Запуск проекта
 
@@ -18,7 +17,7 @@ REST API сервис для создания вишлистов к праздн
    docker-compose up --build
    ```
    Или
-3. ```bash
+   ```bash
    make up
    ```
    
